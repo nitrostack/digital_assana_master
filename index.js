@@ -40,15 +40,8 @@ if(process.env.NODE.ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
-
-
-const port = process.env.PORT || 4040;
-
-
-
-
 // database connection
-const URLCONFIG=process.env.DATABASE
+const URLCONFIG="mongodb+srv://arunrkgit7492:QFjpafyHW0MDH7JX@cluster0.gfxen.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 const data =mongoose.connect(URLCONFIG,{
     useNewUrlParser: true,
 }).then(res=console.log("database connected")).catch(err=>console.log(err))
@@ -56,6 +49,6 @@ const db=mongoose.connection;
 db.on("error",console.error.bind(console,"connection error:"));
 db.once("open",function(){
     // listen to port
-app.listen(port);
-console.log('The Application Is Running At Port:'+port)
+app.listen(process.env.PORT);
+console.log('The Application Is Running At Port:'+process.env.PORT)
 })
